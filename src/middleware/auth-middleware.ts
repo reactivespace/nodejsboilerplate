@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { JwtPayload } from '../types/jwt-decoded-payload';
 import { error } from 'console';
+import { config } from '../config/config';
 
 
 
-const secretKey = process.env.JWT_SECRET || 'your-secret-key';
+const secretKey = config.jwtSecretKey;
 
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
